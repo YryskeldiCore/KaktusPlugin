@@ -5,7 +5,7 @@
             <div class="col-md-12">
                 <div class="card bg-light mb-3 mt-3">
                     <div class="card-body">
-                        <div class="card-header">Список статей</div>
+                        <div class="card-header">Список статей автора {{ author.getName() }}</div>
                         <table class="table table-striped table-bordered">
                             <thead>
                             <tr>
@@ -15,9 +15,9 @@
                             </thead>
                             <tr>
                                 <tbody>
-                                {% for article in articles %}
+                                {% for value, article in articles %}
                                     <tr>
-                                        <th scope="row">{{ article.getId() }}</th>
+                                        <th scope="row">{{ value + 1 }}</th>
                                         <td>{{ article.getName() }}</td>
                                     </tr>
                                 {% endfor %}

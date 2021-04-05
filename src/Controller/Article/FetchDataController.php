@@ -8,7 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/article', name: 'fetchdata')]
+#[Route('/article', name: 'fetch')]
 class FetchDataController extends AbstractController
 {
 
@@ -28,7 +28,7 @@ class FetchDataController extends AbstractController
 //    /**
 //     * @Route("/fetch", name="article_fetch")
 //     */
-    #[Route('/fetch', name: 'fetchdata')]
+    #[Route('/fetch', name: '_data')]
     public function fetchData()
     {
         $articles = $this->articleRepository->findAll();

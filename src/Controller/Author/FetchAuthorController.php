@@ -26,7 +26,7 @@ class FetchAuthorController extends AbstractController
         $this->authorRepository = $authorRepository;
     }
 
-    #[Route('/fetch', name: 'fetch_author')]
+    #[Route('/fetch', name: '_author')]
     public function fetchAuthors(): Response
     {
         $authors = $this->authorRepository->findAll();
