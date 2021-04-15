@@ -1,5 +1,15 @@
-{% extends 'base.html.twig' %} {% block
-    body %}
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+    <style>
+        nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -16,7 +26,7 @@
                             </thead>
                             <tr>
                                 <tbody>
-                                {% for article in articles %}
+                                {% for article in pagination %}
                                     <tr>
                                         <th scope="row">{{ article.getId() }}</th>
                                         <td>{{ article.getName() }}</td>
@@ -31,4 +41,5 @@
             </div>
         </div>
     </div>
+    {{ knp_pagination_render(pagination) }}
 {% endblock %}

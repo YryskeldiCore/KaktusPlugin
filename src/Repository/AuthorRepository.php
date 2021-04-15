@@ -19,6 +19,12 @@ class AuthorRepository extends ServiceEntityRepository
         parent::__construct($registry, Author::class);
     }
 
+    public function fetchAllAuthors(){
+        return $this->createQueryBuilder('authors')
+                ->orderBy('authors.id', 'ASC')
+                ->getQuery();
+    }
+
     public function getByName(string $name):?Author
     {
         return $this

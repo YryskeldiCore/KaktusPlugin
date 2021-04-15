@@ -4,7 +4,9 @@ namespace App\Controller\Article;
 
 use App\Repository\ArticleRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -21,22 +23,35 @@ class FetchDataController extends AbstractController
      */
     private EntityManagerInterface $entityManager;
 
-    public function __construct(EntityManagerInterface $entityManager, ArticleRepository $articleRepository){
+    public function __construct(
+        EntityManagerInterface $entityManager,
+        ArticleRepository $articleRepository,
+    ){
         $this->entityManager = $entityManager;
         $this->articleRepository = $articleRepository;
     }
-//    /**
-//     * @Route("/fetch", name="article_fetch")
-//     */
+
+    /**
+     * @Route("/fetch", name="article_fetch")
+     */
+
     #[Route('/fetch', name: '_data')]
-    public function fetchData()
+    public function fetchData(
+        Request $request,
+        PaginatorInterface $paginator)
     {
-        $articles = $this->articleRepository->findAll();
+
+        $queryBuilder = $this->articleRepository->fetchAllArticles();
+
+        $pagination = $paginator->paginate(
+            $queryBuilder,
+            $request->query->getInt('page', 1),
+            10
+        );
 //        $articles = $this->articleRepository->fetchAllData();
-        dump($articles);
 
         return $this->render('fetchdata/index.html.twig', [
-            'articles' => $articles
+            'pagination' => $pagination
         ]);
     }
 }

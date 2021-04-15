@@ -17,12 +17,12 @@ class Article
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $id;
+    private ?int $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $name;
+    private ?string $name;
 
     /**
      * @ORM\ManyToMany(targetEntity=Author::class, inversedBy="articles")
@@ -30,9 +30,10 @@ class Article
     private $authors;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string")
      */
-    private $publishAt;
+    private ?string $publishAt;
+
 
     public function __construct()
     {

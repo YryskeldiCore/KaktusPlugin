@@ -28,6 +28,50 @@ class ArticleRepository extends ServiceEntityRepository
         $this->authorRepository = $authorRepository;
     }
 
+    public function fetchAllArticles(){
+        return $this->createQueryBuilder('articles')
+                ->orderBy('articles.id', 'ASC')
+                ->getQuery();
+    }
+
+//    public function deleteAll(){
+//        $conn = $this->getEntityManager()->getConnection();
+//
+//        $sql = 'DROP TABLE article,author';
+//
+//        $stmt = $conn->prepare($sql);
+//        $stmt->execute();
+//
+//        return $stmt;
+//    }
+//
+//    public function createTableArticleAgain(){
+//        $conn = $this->getEntityManager()->getConnection();
+//
+//        $sql = 'CREATE TABLE article(
+//                    id INT(10) AUTO_INCREMENT PRIMARY_KEY
+//                    name VARCHAR(255) NOT NULL,
+//                    publishAt VARCHAR(255) NOT NULL
+//                )';
+//        $stmt = $conn->prepare($sql);
+//        $stmt->execute();
+//
+//        return $stmt;
+//    }
+//
+//    public function createTableAuthorAgain(){
+//        $conn = $this->getEntityManager()->getConnection();
+//
+//        $sql = 'CREATE TABLE author(
+//                    id INT(10) AUTO_INCREMENT PRIMARY_KEY
+//                    name VARCHAR(255) NOT NULL
+//                )';
+//        $stmt = $conn->prepare($sql);
+//        $stmt->execute();
+//
+//        return $stmt;
+//    }
+
 //    public function fetchAllData(){
 //        $conn = $this->getEntityManager()->getConnection();
 //
